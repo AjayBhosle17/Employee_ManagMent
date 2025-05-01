@@ -1,0 +1,34 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    ViewBag.Title = "Employee Details";
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Employee Details</h3>
+        </div>
+
+        <div class="card-body p-4">
+            <dl class="row mb-0">
+                <dt class="col-sm-3 fw-bold">Name</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+
+                <dt class="col-sm-3 fw-bold">Email</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Email)</dd>
+
+                <dt class="col-sm-3 fw-bold">Position</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Position)</dd>
+
+                <dt class="col-sm-3 fw-bold">Date Of Joining</dt>
+                <dd class="col-sm-9">@Model.DateOfJoining.ToString("dd MMM yyyy")</dd>
+            </dl>
+        </div>
+
+        <div class="card-footer text-end">
+            @Html.ActionLink("Edit", "Edit", new { id = Model.EmployeeId }, new { @class = "btn btn-warning me-2" })
+            @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿@model IEnumerable<EmployeeManagement.Models.Employee>
+
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white d-flex justify-content-between align-items-center">
+            <h2 class="mb-0">Employee List</h2>
+            @Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-light text-primary fw-bold" })
+        </div>
+
+        <div class="card-body p-4">
+            <table class="table table-hover table-striped table-bordered align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>Sr No.</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Name)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Email)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().Position)</th>
+                        <th>@Html.DisplayNameFor(model => model.First().DateOfJoining)</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @{
+                        int srNo = 1;
+                    }
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@srNo</td>
+                            <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Email)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Position)</td>
+                            <td>@item.DateOfJoining.ToString("dd-MMM-yyyy")</td>
+                            <td class="text-center">
+                                <div class="btn-group" role="group">
+                                    @Html.ActionLink("Edit", "Edit", new { id = item.EmployeeId }, new { @class = "btn btn-sm btn-warning" })
+                                    @Html.ActionLink("Details", "Details", new { id = item.EmployeeId }, new { @class = "btn btn-sm btn-info text-white" })
+                                    @Html.ActionLink("Delete", "Delete", new { id = item.EmployeeId }, new { @class = "btn btn-sm btn-danger" })
+                                </div>
+                            </td>
+                        </tr>
+                        srNo++;
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

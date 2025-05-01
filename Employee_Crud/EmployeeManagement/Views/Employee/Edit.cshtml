@@ -1,0 +1,57 @@
+﻿@model EmployeeManagement.Models.Employee
+
+@{
+    var positions = new List<string> { "Software Developer", "Team Lead", "Project Manager", "HR Manager" };
+
+}
+
+<div class="container mt-5">
+    <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-header bg-primary text-white">
+            <h3 class="mb-0">Edit Employee</h3>
+        </div>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(model => model.EmployeeId)
+
+            <div class="card-body p-4">
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.Name, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.Email, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.Position, new { @class = "form-label fw-bold" })
+                    @Html.DropDownListFor(model => model.Position, new SelectList(positions, Model.Position), " Select Position ", new { @class = "form-select", required = "required" })
+                    @Html.ValidationMessageFor(model => model.Position, "", new { @class = "text-danger" })
+                </div>
+
+                <div class="mb-3">
+                    @Html.LabelFor(model => model.DateOfJoining, new { @class = "form-label fw-bold" })
+                    @Html.EditorFor(model => model.DateOfJoining, new { htmlAttributes = new { @class = "form-control", type = "date" } })
+                    @Html.ValidationMessageFor(model => model.DateOfJoining, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="card-footer text-end">
+                <input type="submit" value="Save Changes" class="btn btn-success me-2" />
+                @Html.ActionLink("Back to List", "Index", null, new { @class = "btn btn-secondary" })
+            </div>
+        }
+    </div>
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
